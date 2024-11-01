@@ -105,9 +105,9 @@ else
                 if (!string.IsNullOrEmpty(newGifPath))
                 {
                     // Ensure the GifPath starts with a forward slash for web URLs
-                    gifPath = gifPath?.Replace(@"/wwwroot", "");
-                    gifPath = newGifPath.StartsWith("/") ? newGifPath : "/" + newGifPath;
-                    _logger.LogInformation($"GIF created successfully. Path: {gifPath}");
+                    gifPath = newGifPath?.Replace(@"wwwroot", "");
+                    gifPath = gifPath.StartsWith("/") ? gifPath : "/" + gifPath;
+                    // _logger.LogInformation($"GIF created successfully. Path: {gifPath}");
                 }
                 else
                 {
