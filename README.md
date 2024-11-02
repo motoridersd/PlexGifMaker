@@ -11,8 +11,9 @@ Only runs on http for now.  Port 9000.
 
 Clone the repository and run the commands below
 
-```cd PlexGifMaker/PlexGifMaker
+```
+cd PlexGifMaker/PlexGifMaker
 docker build --network host
 docker compose up
 ```
-The --network host addition was necessary for this to work as the default docker compose --build was not working on my systems.
+The --network host addition was necessary for this to work as the default docker compose --build was not working on my systems. The extra folder is a bug from the upstream, make sure you are in the folder with the Dockerfile before running the docker build command.
