@@ -17,3 +17,8 @@ docker build --network host
 docker compose up
 ```
 The --network host addition was necessary for this to work as the default docker compose --build was not working on my systems. The extra folder is a bug from the upstream, make sure you are in the folder with the Dockerfile before running the docker build command.
+
+# Known Issues
+
+This works great with SDR content, but HDR content isn't handled properly as tone mapping is not being done by the ffmpeg commands.
+The generated GIFs are not using a palette, so the color space isn't optimized and they look a little "grainy". 
