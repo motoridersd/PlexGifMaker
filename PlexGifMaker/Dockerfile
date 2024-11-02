@@ -24,9 +24,9 @@ RUN mkdir -p /usr/shared/plexgifmaker_keys "/app/subtitles" "/app/logs" "/app/ww
 # Use the .NET SDK image to build the project
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["PlexGifMaker/PlexGifMaker.csproj", "./"]
+COPY ["PlexGifMaker.csproj", "./"]
 RUN dotnet restore "PlexGifMaker.csproj"
-COPY ["PlexGifMaker/", "./"]
+COPY ["/", "./"]
 WORKDIR "/src"
 RUN dotnet build "PlexGifMaker.csproj" -c Release -o /app/build
 
