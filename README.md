@@ -21,4 +21,3 @@ The --network host addition was necessary for this to work as the default docker
 # Known Issues
 
 This works great with SDR content, but HDR content isn't handled properly as tone mapping is not being done by the ffmpeg commands.
-The generated GIFs are not using a palette, so the color space isn't optimized and they look a little "grainy". 
