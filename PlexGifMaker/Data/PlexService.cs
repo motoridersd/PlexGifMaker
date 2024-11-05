@@ -398,7 +398,7 @@ namespace PlexGifMaker.Data
             var sup = Path.Combine(subtitlePath, "subtitle.sup");
             if (!File.Exists(sup))
             {
-                filters = $"fps=20,scale=400:-1:flags=lanczos,subtitles='{srt.Replace("\\", "\\\\")}':force_style='Fontsize=24'[v]";
+                filters = $"fps=20,scale=400:-1:flags=lanczos,subtitles='{srt.Replace("\\", "\\\\")}':force_style='Fontsize=24',split [a][b];[a] palettegen=stats_mode=single [p];[b][p] paletteuse=new=1";
             }
             else
             {
