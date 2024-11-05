@@ -406,7 +406,7 @@ namespace PlexGifMaker.Data
                 filters = $"fps=20,scale=400:-1:flags=lanczos,{subtitleStream}";
             }
 
-            var ffmpegCommand = $"-report -v debug -i \"{videoFile}\" -ss {startTime} -t {duration} -r 10 -lavfi \"{filters}\" -map \"[v]\" -c:v gif \"{outputPath}\"";
+            var ffmpegCommand = $"-report -v debug -i \"{videoFile}\" -ss {startTime} -t {duration} -r 10 -lavfi \"{filters}\" \"{outputPath}\"";
             _logger.LogInformation("Executing FFmpeg command: {FfmpegCommand}", ffmpegCommand);
 
             using (var process = new Process())
