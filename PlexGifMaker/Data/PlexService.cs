@@ -1,4 +1,4 @@
-﻿using SubtitlesParser.Classes;
+using SubtitlesParser.Classes;
 using System.Diagnostics;
 using System.Text;
 using System.Xml;
@@ -391,14 +391,14 @@ namespace PlexGifMaker.Data
                 index = i;
             }
             var formattedEndTime = (startTime + duration).ToString(@"hh\hmm\mss\sfff\ms").Replace(":", "");
-            var outputPath = Path.Combine("wwwroot", "gifs", $"{episodeId}_{formattedStartTime}_to_{formattedEndTime}.gif");
+            var outputPath = Path.Combine("wwwroot", "gifs", $"{episodeId}_{formattedStartTime}_to_{formattedEndTime}.mp4");
             outputPath = EnsureUniqueFilename(outputPath);
             string filters;
             var srt = Path.Combine(subtitlePath, "subtitle.srt");
             var sup = Path.Combine(subtitlePath, "subtitle.sup");
             if (!File.Exists(sup))
             {
-                filters = $"fps=20,scale=400:-1:flags=lanczos,subtitles='{srt.Replace("\\", "\\\\")}':force_style='Fontsize=24',split [a][b];[a] palettegen=stats_mode=single [p];[b][p] paletteuse=new=1";
+                filters = $"scale=400:-2:flags=lanczos,subtitles='{srt.Replace("\\", "\\\\")}':force_style='Fontsize=24'";
             }
             else
             {
@@ -406,7 +406,7 @@ namespace PlexGifMaker.Data
                 filters = $"fps=20,scale=400:-1:flags=lanczos,{subtitleStream}";
             }
 
-            var ffmpegCommand = $"-report -v debug -i \"{videoFile}\" -ss {startTime} -t {duration} -r 10 -lavfi \"{filters}\" \"{outputPath}\"";
+            var ffmpegCommand = $"-report -v debug -i \"{videoFile}\" -ss {startTime} -t {duration} -lavfi \"{filters}\" \"{outputPath}\"";
             _logger.LogInformation("Executing FFmpeg command: {FfmpegCommand}", ffmpegCommand);
 
             using (var process = new Process())
